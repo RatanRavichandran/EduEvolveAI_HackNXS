@@ -18,7 +18,6 @@ By implementing these virtual environments, India can bridge educational gaps, c
 This project examines the rationale and potential of personalized learning in transforming Indian education.
 
 ## Solution Model
-- This is the main page
 ![Solution Model](assets/Solution_model.png)
 
 ## Key Features
