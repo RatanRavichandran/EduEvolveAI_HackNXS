@@ -1,0 +1,158 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard</title>
+</head>
+<body>
+    <h1>Flashcard</h1>
+    <div>
+        <h2>Question:</h2>
+        <p>{{ flashcard.question }}</p>
+    </div>
+    <div>
+        <h2>Answer:</h2>
+        <p>{{ flashcard.answer }}</p>
+    </div>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard</title>
+    <script>
+        function showAnswer() {
+            document.getElementById('answer').style.display = 'block';
+            document.getElementById('show-answer-btn').style.display = 'none';
+        }
+    </script>
+</head>
+<body>
+    <h1>Flashcard</h1>
+    <div>
+        <h2>Question:</h2>
+        <p>{{ flashcard.question }}</p>
+    </div>
+    <div id="answer" style="display: none;">
+        <h2>Answer:</h2>
+        <p>{{ flashcard.answer }}</p>
+    </div>
+    <button id="show-answer-btn" onclick="showAnswer()">Show Answer</button>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        div {
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0% {opacity: 0;}
+            50% {opacity: 1;}
+            100% {opacity: 0;}
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <h1>Flashcard</h1>
+    <div>
+        <h2>Question:</h2>
+        <p>{{ flashcard.question }}</p>
+    </div>
+    <div id="answer" style="display: none;">
+        <h2>Answer:</h2>
+        <p>{{ flashcard.answer }}</p>
+    </div>
+    <button id="show-answer-btn" onclick="showAnswer()">Show Answer</button>
+    <button onclick="generateNextFlashcard()">Next Flashcard</button>
+
+    <script>
+        // JavaScript code to generate stars
+        document.addEventListener("DOMContentLoaded", function () {
+            const numStars = 100; // Number of stars to generate
+            const starsContainer = document.querySelector(".stars");
+
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement("div");
+                star.className = "star";
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                starsContainer.appendChild(star);
+            }
+        });
+
+        function showAnswer() {
+            document.getElementById('answer').style.display = 'block';
+            document.getElementById('show-answer-btn').style.display = 'none';
+        }
+
+        function generateNextFlashcard() {
+            // Redirect to the index page to upload another PDF for a new flashcard
+            window.location.href = "/";
+        }
+    </script>
+</body>
+</html>
+
+

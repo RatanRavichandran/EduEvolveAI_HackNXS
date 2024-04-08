@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes creation</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #000;
+            color: #fff; /* Set text color to white */
+            position: relative; /* Ensure stars and content are positioned relative to the body */
+        }
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        @keyframes twinkle {
+            0% {opacity: 0;}
+            50% {opacity: 1;}
+            100% {opacity: 0;}
+        }
+        .content {
+            text-align: left; /* Align the content to the left */
+            margin-top: 20px;
+            margin-left: 2%; /* Add margin to the left */
+            z-index: 1; /* Ensure content appears above the stars */
+        }
+        .content h1, .content h2, .content p, .content li {
+            color: #fff;
+        }
+        .content a {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars">
+        <!-- Stars will be dynamically generated here -->
+    </div>
+    <div class="content">
+        <h1>Video Summary Result</h1>
+        <p>YouTube Link: <a href="{{ youtube_link }}" target="_blank">{{ youtube_link }}</a></p>
+        <h2>Video Summary:</h2>
+        <ul>
+            {% for sentence in summary.split('\n') %}
+                {% if sentence %}
+                    <li>{{ sentence }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script>
+        // JavaScript code to generate stars
+        document.addEventListener("DOMContentLoaded", function () {
+            const numStars = 100; // Number of stars to generate
+            const starsContainer = document.querySelector(".stars");
+
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement("div");
+                star.className = "star";
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                starsContainer.appendChild(star);
+            }
+        });
+    </script>
+</body>
+</html>

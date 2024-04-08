@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            text-align: center; /* Center align removed */
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label, input[type="file"], button {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            background-color: #fff;
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        input[type="file"] {
+            width: 250px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        pre {
+            margin-top: 20px;
+            text-align: left;
+            white-space: pre-wrap;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0% {opacity: 0;}
+            50% {opacity: 1;}
+            100% {opacity: 0;}
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <h1>Student Profile</h1>
+    <form method="post" enctype="multipart/form-data">
+        <label for="pdf_file">Upload PDF file:</label>
+        <input type="file" id="pdf_file" name="pdf_file">
+        <br>
+        <button type="submit">Generate Student Profile</button>
+    </form>
+
+    {% if student_profile %}
+        <h2>Student Profile:</h2>
+        <pre>{{ student_profile }}</pre>
+    {% endif %}
+
+    <script>
+        // JavaScript code to generate stars
+        document.addEventListener("DOMContentLoaded", function () {
+            const numStars = 100; // Number of stars to generate
+            const starsContainer = document.querySelector(".stars");
+
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement("div");
+                star.className = "star";
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                starsContainer.appendChild(star);
+            }
+        });
+    </script>
+</body>
+</html>

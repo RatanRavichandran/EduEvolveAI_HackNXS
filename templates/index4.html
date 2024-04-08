@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label, select, input[type="number"], input[type="text"], input[type="submit"] {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            background-color: #fff;
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        input[type="number"] {
+            width: 50px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        pre {
+            margin-top: 20px;
+            text-align: left;
+            white-space: pre-wrap;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0% {opacity: 0;}
+            50% {opacity: 1;}
+            100% {opacity: 0;}
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <h1>Quiz Generator</h1>
+    <form method="post">
+        <label for="num_questions">Number of Questions:</label>
+        <input type="number" id="num_questions" name="num_questions" min="1" max="10" value="3" required>
+        <br>
+        <label for="quiz_context">Quiz Context:</label>
+        <input type="text" id="quiz_context" name="quiz_context" required>
+        <br>
+        <label for="quiz_type">Quiz Type:</label>
+        <select id="quiz_type" name="quiz_type">
+            <option value="Multiple-choice">Multiple-choice</option>
+            <option value="True-false">True-false</option>
+            <option value="Open-ended">Open-ended</option>
+        </select>
+        <br>
+        <input type="submit" value="Generate Quiz">
+    </form>
+    {% if quiz_response %}
+    <h2>Quiz:</h2>
+    <pre>{{ quiz_response }}</pre>
+    {% endif %}
+
+    <script>
+        // JavaScript code to generate stars
+        document.addEventListener("DOMContentLoaded", function () {
+            const numStars = 100; // Number of stars to generate
+            const starsContainer = document.querySelector(".stars");
+
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement("div");
+                star.className = "star";
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                starsContainer.appendChild(star);
+            }
+        });
+    </script>
+</body>
+</html>
