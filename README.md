@@ -139,9 +139,3 @@ Here are the list of the APIs Used:
 ### Contextual Translation
 ![Contextual Translation](assets/translation.jpg)
 ```
-
-
-
-
-
-
